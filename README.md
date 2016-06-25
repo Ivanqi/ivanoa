@@ -1,2 +1,2 @@
 # ivanoa
-this is a oa system
+这是一个基于 phalcon 框架的OA系统。正在建设中...

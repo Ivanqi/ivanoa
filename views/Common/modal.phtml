@@ -1,0 +1,91 @@
+<div id="myModal" class="reveal-modal">
+    <form <?php if(isset($commont_config['form_id']['html_option'])):?> <?=arrtoString($commont_config['form_id']['html_option'])?> <?php endif;?>>
+        <div class="headerzone">
+            <h2>&nbsp;<?php
+                 echo $commont_config['title']['field_label'] != ''? $commont_config['title']['field_label'] :getVal($item,$commont_config['title']['field_name'])?></h2>
+            <div class="buttonzone">
+                <?php foreach($commont_config['buttonzone'] as $buttonzone):?>
+                    <?php if($buttonzone['field_type'] == 'submit'):?>
+                        <button type="submit" <?php if(isset($buttonzone['html_option'])):?><?=arrtoString($buttonzone['html_option'])?><?php endif;?> ><?=$buttonzone['field_label']?></button>
+                    <?php else:?>
+                        <a href="javascript:;" <?php if(isset($buttonzone['html_option'])):?><?=arrtoString($buttonzone['html_option'])?><?php endif;?>><?=$buttonzone['field_label']?></a>
+                    <?php endif;?>
+                <?php endforeach;?>
+            </div>
+             <div style="clear:both"></div>
+        </div>
+        <div style="clear:both"></div>
+        <ul class="contentzoen">
+            <?php foreach($commont_config['form_fields'] as $form_fields):?>
+            <li <?php if(isset($form_fields['li_html_option'])):?> <?=arrtoString($form_fields['li_html_option'])?> <?php endif;?>>
+                <?php if($form_fields['field_type'] == 'label'):?>
+                 <?=$form_fields['field_label']?>:<span><?php if(isset($item)):?><?=getVal($item,$form_fields['field_name'])?> <?php endif;?></span>
+                <?php elseif($form_fields['field_type'] == 'textarea'):?>
+                 <?=$form_fields['field_label']?>:    <br>
+                 <textarea  <?php if(isset($form_fields['html_option'])):?> <?=arrtoString($form_fields['html_option'])?> <?php endif;?> name ="<?=$form_fields['field_name']?>" id="" cols="80" rows="12"><?php if(isset($item)):?><?=getVal($item,$form_fields['field_name'])?> <?php endif;?></textarea>
+                <?php elseif($form_fields['field_type'] == 'zone'):?>
+                    <?=$form_fields['field_label']?>:    <br>
+                    <div <?php if(isset($form_fields['html_option'])):?> <?=arrtoString($form_fields['html_option'])?> <?php endif;?>>
+                        <?php if(isset($form_fields['childfield'])):?>
+                           <?php foreach($form_fields['childfield'] as $childfield):?>
+                                <?php if($childfield['field_type'] == 'img'):?>
+                                    <img src="" alt="" <?php if(isset($childfield['html_option'])):?> <?=arrtoString($childfield['html_option'])?> <?php endif;?> />
+                                <?php endif;?>
+                           <?php endforeach;?>
+                        <?php endif;?>
+                    </div>
+                <?php elseif($form_fields['field_type'] == 'div'):?>
+                    <a href ="javascript:;"<?php if(isset($form_fields['html_option'])):?> <?=arrtoString($form_fields['html_option'])?> <?php endif;?>><?=$form_fields['field_label']?></a><br>
+                <?php elseif($form_fields['field_type'] == 'text'):?>
+                    <?=$form_fields['field_label']?>:<span> <input name ="<?=$form_fields['field_name']?>" type="text" <?php if(isset($form_fields['html_option'])):?> <?=arrtoString($form_fields['html_option'])?> <?php endif;?> value="<?php if(isset($item)):?><?=getVal($item,$form_fields['field_name'])?> <?php endif;?>"> </span>
+                <?php elseif($form_fields['field_type'] == 'select' || $form_fields['field_type'] == 'static_select'):?>
+                    <?=$form_fields['field_label']?>:
+                    <span>
+                    <?php
+                        if(isset($form_fields['data_provides']['data'])){
+                            $select_data    =   $form_fields['data_provides']['data'];
+                        }else{
+                            $select_class   =   [$form_fields['data_provides']['class'],$form_fields['data_provides']['method']];
+                            $select_params  =   isset($form_fields['data_provides']['[params']) ? $form_fields['data_provides']['[params'] : [];
+                            $select_data    =   call_user_func_array($select_class,$select_params);
+                        }
+
+                         $select_options     =   [0 => $form_fields['field_name'],1 => $select_data];
+                        if(isset($form_fields['data_provides']['options'])){
+                            $select_options =   array_merge($select_options,$form_fields['data_provides']['options']);
+                        }
+
+                        if($form_fields['field_type']=="select"){
+                            echo $this->tag->select($select_options);
+                        }else{
+                            echo $this->tag->selectStatic($select_options);
+                        }
+                   ?>
+                   </span>
+                <?php elseif($form_fields['field_type'] == 'layer'):?>
+                    <?=$form_fields['field_label']?>:<span> <input name="<?=$form_fields['field_name']?>" type="text" <?php if(isset($form_fields['html_option'])):?> <?=arrtoString($form_fields['html_option'])?> <?php endif;?> value="<?php if(isset($item)):?><?=getVal($item,$form_fields['field_name'])?> <?php endif;?>"> <a href="javascript:;" <?php if(isset($form_fields['button_option'])):?> <?=arrtoString($form_fields['button_option'])?> <?php endif;?> >选择</a></span>
+                <?php elseif($form_fields['field_type'] == 'checkbox'):?>
+                    <?=$form_fields['field_label']?>:
+                    <span>
+                        <?php if($form_fields['isChild']):?>
+                            <?php foreach($form_fields['child'] as $val):?>
+                                <input name="<?=$val['field_name']?>" <?php if(isset($val['html_option'])):?> <?=arrtoString($val['html_option'])?> <?php endif;?> value="<?php if(isset($item)):?><?=getVal($item,$val['field_name'])?> <?php endif;?>"><label for="<?=$val['html_option']['id']?>"><?=$val['field_label']?></label>
+                            <?php endforeach;?>
+                        <?php endif;?>
+                    </span>
+                <?php elseif($form_fields['field_type']  == 'link'):?>
+                    <?=$form_fields['field_label']?>:
+                    <?php if(isset($item)):?>
+                        <?php foreach(getVal($item,$form_fields['field_name']) as $val):?>
+                            <p class="attamp">&nbsp;<?=$val['name']?> <a href="<?=$val['url']?>">下载</a></p>
+                        <?php endforeach;?>
+                    <?php endif;?>
+                <?php elseif($form_fields['field_type'] == 'hidden'):?>
+                    <input type="hidden" <?php if(isset($form_fields['html_option'])):?> <?=arrtoString($form_fields['html_option'])?> <?php endif;?>  value="<?php if(isset($item)):?><?=getVal($item,$form_fields['field_name'])?> <?php endif;?>">
+                <?php endif;?>
+            </li>
+            <?php endforeach;?>
+            <div style="clear:both"></div>
+        </ul>
+    </form>
+</div>

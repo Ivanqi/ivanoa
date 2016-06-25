@@ -1,0 +1,19 @@
+<div id="myLayer" class="reveal-modal layermodel">
+     <div class="headerzone">
+        <h2>&nbsp;<?php echo $commont_config['title']['field_label'] != ''? $commont_config['title']['field_label'] : $item->title ?></h2>
+        <div class="buttonzone">
+            <?php foreach($commont_config['buttonzone'] as $buttonzone):?>
+            <a href="javascript:;" <?php if(isset($buttonzone['html_option'])):?><?=arrtoString($buttonzone['html_option'])?><?php endif;?>><?=$buttonzone['field_label']?></a>
+            <?php endforeach;?>
+        </div>
+         <div style="clear:both"></div>
+    </div>
+    <div style="clear:both"></div>
+    <ul class="contentzoen layerul">
+        <li data-id="0"><span>根节点</span></li>
+        <?php foreach($item as $val):?>
+        <li data-id="<?=$val['id']?>"><span <?=levToStyle($val['lev'],20)?>><?=$val['name']?></span></li>
+        <?php endforeach;?>
+        <div style="clear:both"></div>
+    </ul>
+</div>

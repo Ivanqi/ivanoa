@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>demo -- cropper 练习</title>
+	<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+	<link rel="stylesheet" href="cropper.min.css" />
+	<script src="cropper.min.js"></script>
+	<style>
+		.cropzone{ width:600px;height:400px }
+		img {
+		  max-width: 100%; /* This rule is very important, please do not ignore this! */
+		  width:600px;
+		  height:400px;
+		}
+
+		#datazone { width:100%;height:40px;border:1px solid #ccc;line-height:40px;margin-top:30px; }
+	</style>
+</head>
+<body>
+	<div class="cropzone"><img id="image" src="demo.jpg" alt=""></div>
+	<div class="cropShow" style="width:100px;height:100px"></div>
+	<div id="listButton">
+		<button id="clear">clear</button>
+		<button id="crop">crop</button>
+		<button id="enable">enable</button>
+		<button id="disable">disable</button>
+		<button id="getData">getData</button>
+		<button id="getContainer">getContainer</button>
+		<button id="getImagesData">getImagesData</button>
+		<button id="getCanvasData">getCanvasData</button>
+		<button id="getCropBoxData">getCropBoxData</button>
+	</div>
+	<div id="datazone"></div>
+	<script>
+		//https://github.com/fengyuanchen/cropper/blob/master/README.md
+		$image = $('#image');
+		$image.cropper({
+			//aspectRatio: 16/ 9,				//设置裁剪区域的纵横比
+			viewMode:0,						//设置cropper插件的视图模式
+			dragModel:'crop',				//设置裁剪区域的拖动模式
+			modal:true,						//在“图像”和“裁剪”框中显示“黑色模式”。
+			guides:false,					//设置裁剪区域中的虚线
+			center:true,					//设置裁剪区域的中心标记
+			highlight:false,				//在裁剪区域设置白色突出物
+			//preview:$('.cropShow'),			//预览区域
+			responsive:true,				//在渲染时调整插件在窗口中的大小
+			restore:true,					//调整窗口大小后恢复裁剪区域
+			background:true,				//显示透明黑色的网格背景
+			autoCrop:true,					//在初始化时自动裁剪图像
+			autoCropArea:0.65,				//在1和0之间。定义自动裁剪区域大小（百分比）
+			movable:true,					//启动移动图片
+			rotatable:true,					//图片旋转
+			scalable:true,					//使图片缩放
+			zomeable:true,					//使能图像放大
+			zoomOnTouch:true,				//通过拖动触摸来缩放图像
+			zoomOnWheel:true,				//通过鼠标放大图像
+			wheelZoomRatio:0.1,				//定义鼠标缩放图像的比例
+			cropBoxMovable:true,			//通过拖动来移动裁剪区域
+			cropBoxResizable:true,			//通过拖动才调整裁剪区域大小
+			toggleDragModeOnDblclick:true,	//双击裁剪区域之外的地区，进行 图片拖动模式或图片裁剪模式的切换
+			minContainerWidth:200,			//容器最小宽度,
+			minContainerHeight:100,			//容器最小高度,
+			minCanvasWidth:0,				//画布最小宽度,
+			minCanvasHeight:0,				//画布最小高度,
+			minCropBoxWidth:0,				//裁剪区最小宽度,
+			minCropBoxHeight:0,				//裁剪区最小高度,
+			build:function(){				//快速建立裁剪事件
+			},
+			built:function(){				//快速建立裁剪事件
+				$this = $(this);
+				//$(this).cropper('setData',{'width':400,'height':450});
+				$(this).cropper('setDragMode','move');
+				//取消裁剪效果
+				$('#clear').on('click',function(){
+					$this.cropper('clear');
+				});
+
+				$('#crop').on('click',function(){
+					$this.cropper('crop');
+				});
+
+				$('#enable').on('click',function(){
+					$this.cropper('enable');
+				});
+
+				$('#disable').on('click',function(){
+					$this.cropper('disable');
+				});
+			}
+		});
+
+		$('#getData').on('click',function(){
+			$data = $image.cropper('getData');
+			$('#datazone').html('getData:'+JSON.stringify($data));
+		});
+
+		$('#getContainer').on('click',function(){
+			$data = $image.cropper('getContainerData');
+			$('#datazone').html('getContainerData:'+JSON.stringify($data));
+		});
+
+		$('#getImagesData').on('click',function(){
+			$data = $image.cropper('getImageData');
+			$('#datazone').html('getImagesData:'+JSON.stringify($data));
+		});
+
+		$('#getCanvasData').on('click',function(){
+			$data = $image.cropper('getCanvasData');
+			$('#datazone').html('getCanvasData:'+JSON.stringify($data));
+		});
+
+		$('#getCropBoxData').on('click',function(){
+			$data = $image.cropper('getCropBoxData');
+			$('#datazone').html('getCropBoxData:'+JSON.stringify($data));
+		});
+	</script>
+</body>
+</html>

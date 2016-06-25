@@ -1,0 +1,72 @@
+<?php $this->partial("common/header"); ?>
+    <!--SIDEBAR-->
+     <?php $this->partial("common/slider",$commont_config); ?>
+    <!--CONTENT-->
+    <div id="content" class="white" ms-controller="node">
+        <h1><img src="/images/icons/users.png" alt="" /> 权限设置</h1>
+
+        <div class="bloc">
+            <form id="juriNode">
+                <div class="title">
+                </div>
+                <div class="user_save">
+                    <a href="#" class="button save enter">　保存　</a>
+                    <!-- <div class="nodelselect">
+                        <select name="" id="Pnode">
+                            <option value="0">全部</option>
+                            <?php //foreach($node as $val):?>
+                            <option value="<?$val['id']?>"><?$val['name']?></option>
+                            <?php //endforeach;?>
+                        </select>
+                    </div> -->
+                </div>
+                <div class="groupzone nodezone">
+                    <div class="groupzoneright nodezoneright">
+                        <div class="nodezonehidden">
+                            <table>
+                                <tr>
+                                    <td align="center">
+                                        <input type="checkbox" name="" id="" ms-duplex-checked="allchecked" data-duplex-changed="checkAll"><p>菜单</p>
+                                    </td>
+                                    <td>增加</td>
+                                    <td>修改</td>
+                                    <td>删除</td>
+                                </tr>
+                                <tr ms-repeat="allnodes">
+                                    <td>
+                                       <input type="checkbox"  ms-attr-name="name[{{el.id}}]['st']" ms-duplex-checked="el.checked"  data-duplex-changed="checkOne" ms-attr-value="el.checked" />&nbsp;
+                                        <span ms-css-margin-left="{{el.lev*20}}">{{el.name}}</span>
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" ms-attr-name="name[{{el.id}}]['add']" ms-duplex-checked="el.is_add" ms-attr-value="el.is_add" name="add" ms-visible="el.is_admin == 1">
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" ms-attr-name="name[{{el.id}}]['write']" name="write" ms-attr-value="el.is_write" ms-duplex-checked="el.is_write" ms-visible="el.is_admin == 1">
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" ms-attr-name="name[{{el.id}}]['del']" name="delete" ms-attr-value="el.is_del" ms-duplex-checked="el.is_del" ms-visible="el.is_admin == 1">
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+
+                    </div>
+                    <div class="groupzoneleft">
+                        <table>
+                            <tr>
+                                <td>&nbsp;名称</td>
+                            </tr>
+                            <?php foreach($roles as $val):?>
+                            <tr data-id="<?=$val['id']?>">
+                                <td>&nbsp;<?=$val['name']?></td>
+                            </tr>
+                            <?php endforeach;?>
+                        </table>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script src="/js/app/jurisdiction/node.js"></script>
+    </body>
+</html>

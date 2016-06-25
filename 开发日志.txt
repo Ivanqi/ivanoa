@@ -1,0 +1,11 @@
+[bug]
+1.公共权限节点有问题，待修复
+2.节点分配，角色和节点分配，入库bug 待修复
+3.权限节点控制，要接着优化
+
+[question]
+1.在ueditor + requireJs 出现
+	Chrome says “Resource interpreted as script but transferred with MIME type text/plain.”, what gives?
+
+2.fullcalendar 插件出现lang 语言包无法加载。
+	解决:lang语言包，忘记使用requireJs关联fullcalendar插件

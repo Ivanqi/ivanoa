@@ -1,0 +1,53 @@
+<?php $this->partial("common/header"); ?>
+    <!--SIDEBAR-->
+     <?php $this->partial("common/slider",$commont_config); ?>
+    <!--CONTENT-->
+    <div id="content" class="white" ms-controller="groupManagement">
+        <h1><img src="/images/icons/users.png" alt="" /> 权限组管理</h1>
+
+        <div class="bloc">
+            <form id="roleform">
+                <input type="hidden" name="id" ms-duplex="roleInfo.id">
+                <div class="title"></div>
+                <div class="user_save">
+                    <a href="#" class="button save delete">　删除　</a>
+                    <button type="submit" class="button save enter">　保存　</button>
+                    <a href="#" class="button save add">　新增　</a>
+                </div>
+                <div class="groupzone">
+                    <div class="groupzoneright">
+                            <p><span>名称:</span><input type="text" name="name" ms-duplex="roleInfo.name"></p>
+                            <p><span>排序:</span><input type="text" name="sort" ms-duplex="roleInfo.sort"></p>
+                            <p><span>状态:</span>
+                                <select name="status" id="">
+                                    <option value="0">禁用</option>
+                                    <option value="1">启用</option>
+                                </select>
+                            </p>
+                            <p>
+                                <span style="width:100%">备注:</span>
+                                <textarea name="remark" id="" cols="60" rows="15" ms-duplex="roleInfo.remark"></textarea>
+                            </p>
+                        </form>
+                    </div>
+                    <div class="groupzoneleft">
+                        <table>
+                            <tr>
+                                <td>&nbsp;名称</td>
+                                <td>状态</td>
+                            </tr>
+                            <?php foreach($item as $v):?>
+                            <tr data-id="<?=$v['id']?>">
+                                <td>&nbsp;<?=$v['name']?></td>
+                                <td><?=$v['status']?></td>
+                            </tr>
+                             <?php endforeach;?>
+                        </table>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script src="/js/app/jurisdiction/groupManagement.js"></script>
+    </body>
+</html>

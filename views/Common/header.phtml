@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>我的OA</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+
+        <script src="/js/require.js"></script>
+        <script src="/js/config.js"></script>
+        <script src="/js/mains.js"></script>
+        <script>
+            window.baseUrl = "<?=C('app.main_host')?>";
+        </script>
+        <link rel="stylesheet" href="/css/min.css" />
+        <link rel="stylesheet" href="/css/self.css" />
+        <link rel="stylesheet" href="/css/style.css" />
+
+        <link rel="stylesheet" href="/css/cropper/cropper.min.css">
+        <link rel="stylesheet" href="/css/formValidator/theme-default.min.css">
+        <link href='/css/fullcalendar-2.7.1/fullcalendar.css' rel='stylesheet' />
+        <link href='/css/fullcalendar-2.7.1/fullcalendar.print.css' rel='stylesheet' media='print' />
+    </head>
+    <body>
+        <!--HEAD-->
+        <div id="head">
+            <div class="left">
+                <a href="#" class="button profile"><img src="/images/icons/top/huser.png" alt="" /></a>
+                Hi, 
+                <a href="#"><?=$show_name?></a>
+                |
+                <a href="<?=U('login/logout')?>">退出</a>
+            </div>
+            <div class="right">
+                <form action="#" id="search" class="search placeholder">
+                    <label>搜索</label>
+                    <input type="text" value="" name="q" class="text"/>
+                    <input type="submit" value="rechercher" class="submit"/>
+                </form>
+            </div>
+        </div>

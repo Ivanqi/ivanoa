@@ -1,0 +1,50 @@
+<?php $this->partial("common/header"); ?>
+    <!--SIDEBAR-->
+     <?php $this->partial("common/slider",$commont_config); ?>
+    <!--CONTENT-->
+    <div id="content" class="white" ms-controller="assignment">
+        <h1><img src="/images/icons/users.png" alt="" /> 权限分配</h1>
+
+        <div class="bloc">
+            <div class="title">
+            </div>
+            <div class="user_save">
+                <a href="#" class="button save enter">　保存　</a>
+            </div>
+            <div class="groupzone assignmentzone">
+             <form id="assigmentform">
+                    <div class="groupzoneright">
+                        <table>
+                            <tr>
+                                <td>&nbsp;&nbsp;&nbsp;名称</td>
+                            </tr>
+                            <tr ms-repeat="rolesInfo">
+                                <td><input type="checkbox" ms-attr-name="role[{{el.id}}]" ms-duplex-checked="el.checked" ms-attr-value="el.checked"> &nbsp;{{el.name}}</td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="groupzoneleft ">
+                        <table>
+                            <tr>
+                                <td>&nbsp;名字</td>
+                                <td>电子邮箱</td>
+                                <td>部门</td>
+                                <td>职位</td>
+                                <td>状态</td>
+                            </tr>
+                            <tr ms-repeat="usersInfo" ms-data-id="el.id"  ms-click="getUserRole">
+                                <td>&nbsp;{{el.username}}</td>
+                                <td>{{el.email}}</td>
+                                <td>{{el.department}}</td>
+                                <td>{{el.position}}</td>
+                                <td>{{el.status}}</td>
+                            </tr>
+                       </table>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script src="/js/app/jurisdiction/assignment.js"></script>
+    </body>
+</html>

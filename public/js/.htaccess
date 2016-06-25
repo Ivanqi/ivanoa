@@ -1,0 +1,7 @@
+RewriteEngine On
+SetEnvIf Origin "^http(s)?://(.+\.)?(ivanoa\.com)$" origin_is=$0 
+<FilesMatch "\.(cur|gif|ico|jpe?g|png|ttf|ttc|otf|eot|woff|woff2|svgz?|webp)$">
+	#Header set Access-Control-Allow-Origin *  %{origin_is}e env=origin_is
+	#Header always set Access-Control-Allow-Origin %{origin_is}e env=origin_is
+	Header always set Access-Control-Allow-Origin '*'
+</FilesMatch>

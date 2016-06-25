@@ -1,0 +1,62 @@
+<?php $this->partial("common/header"); ?>
+    <!--SIDEBAR-->
+     <?php $this->partial("common/slider",$commont_config); ?>
+    <!--CONTENT-->
+    <div id="content" class="white" ms-controller="addnode">
+        <h1><img src="/images/icons/users.png" alt="" /> 权限节点添加</h1>
+
+        <div class="bloc">
+            <form id ="addNode">
+                <input type="hidden" name="id" ms-attr-value="onenode.id" />
+                <div class="title">
+                </div>
+                <div class="user_save">
+                    <a href="#" class="button save delete">　删除　</a>
+                    <button type="submit" class="button save enter">　保存　</button>
+                    <a href="#" class="button save add">　新增　</a>
+                    <div class="nodelselect">
+                        <select id="Pmode">
+                            <?php foreach($item as $val):?>
+                                 <option value="<?=$val['id']?>"><?=$val['name']?></option>
+                            <?php endforeach;?>
+                        </select>
+                    </div>
+                </div>
+                <div class="groupzone addnodezone">
+                    <div class="groupzoneright">
+                        <p><span>名称:</span><input name="name" type="text" ms-duplex="onenode.name"></p>
+                        <p><span>地址:</span><input name="title" type="text" ms-duplex="onenode.title"></p>
+                        <p>
+                            <span>父节点:</span><input name="pid" type="text" ms-duplex="onenode.pidName">
+                            <button class="groupzonerightbutton button">选择</button>
+                        </p>
+                        <p><span>排序:</span><input name="sort" type="text" ms-duplex="onenode.sort"></p>
+                        <p><span>图标:</span><input name="icon" type="text" ms-duplex="onenode.icon"></p>
+                        <p>
+                            <span>是否管理:</span>
+                            <input type="radio" value="1" name="is_admin" id="is_admins1">是&nbsp;
+                            <input type="radio" value="0" name="is_admin" id=""> 否
+                        </p>
+                        <p><span>状态:</span>
+                            <select name="status" id="">
+                                <option value="1">启用</option>
+                                <option value="0">禁用</option>
+                            </select>
+                        </p>
+                        <p>
+                            <span style="width:100%">备注:</span>
+                            <textarea name="remark" id="" cols="60" rows="15" ms-duplex="onenode.remark"></textarea>
+                        </p>
+                    </div>
+                    <div class="groupzoneleft addnodezoneleft">
+                        <ul class="addnodezoneleftul">
+                            <li ms-repeat="nodeInfo" ms-click="click" ms-data-id="el.id"><span ms-css-margin-left="{{el.lev*20}}">&nbsp;<i class="fa"></i>&nbsp;{{el.name}}</span></li>
+                        <ul>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script src="/js/app/node/addNode.js"></script>
+    </body>
+</html>

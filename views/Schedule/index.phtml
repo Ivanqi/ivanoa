@@ -1,0 +1,16 @@
+<?php $this->partial("common/header"); ?>
+    <!--SIDEBAR-->
+     <?php $this->partial("common/slider",$commont_config); ?>
+    <!--CONTENT-->
+    <div id="contents" class="white">
+        <h1><img src="/images/icons/calendar.png" alt="" /> 事务日程</h1>
+        <div class="calendarzone">
+            <div class="user_save">
+                <a href="/Schedule/add" class="button save">　新建　</a>
+            </div>
+            <div id="calendar"></div>
+        </div>
+    </div>
+    <script src="/js/app/schedule/calendar.js"></script>
+</body>
+</html>

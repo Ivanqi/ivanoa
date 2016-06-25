@@ -1,0 +1,80 @@
+<?php $this->partial("common/header"); ?>
+    <!--SIDEBAR-->
+     <?php $this->partial("common/slider",$commont_config); ?>
+    <!--CONTENT-->
+    <div id="content" class="white">
+        <h1><img src="/images/icons/button-add.png" alt="" /> 新增事务日程</h1>
+
+        <div class="bloc">
+            <div class="title"></div>
+            <div class="schedulezone">
+                <form id="scheduleAdd" url="/schedule/addData">
+                    <ul>
+                        <li class="line">
+                            <b>标题*:</b>
+                            <input type="text" class="inputline" name="title" data-validation="required" data-validation-error-msg="标题不能为空">
+                        </li>
+                        <li>
+                            <b>开始时间:</b>
+                            <input type="text" name="statrtime" class="datepicker" readonly data-validation="required" data-validation-error-msg="开始时间不能为空" />
+                        </li>
+                        <li>
+                            <b>结束时间:</b>
+                            <input type="text" name="endtime" class="datepicker" readonly data-validation="required" data-validation-error-msg="结束时间不能为空" />
+                        </li>
+                        <li class="block"><b>地点:</b><input type="text" name="address"></li>
+                        <li class="line"><b class="participantb">参与人员:</b>
+                            <!-- <input type="text" readonly class="inputline"/> -->
+                            <div class="participant">
+                                <div class="participantzone"></div>
+                                <img src="/images/icons/user.png" alt="" id="member"/>
+                            </div>
+                        </li>
+                        <li class="block">
+                            <b>附件:</b>
+                            <div id="fileUpload" class="file">附件上传</div>
+                             <div id="filePost" class="file file2">
+                                <b class="b">开始上传</b>
+                                <!-- <input type="file" class="filebutton" id="file" size="20" style="opacity: 0;"> -->
+                            </div>
+                        </li>
+                        <li class="line">
+                            <div id="fileShowZone" class="fileshowzone"></div>
+                        </li>
+                        <li class="block">
+                            <div class="textzone">
+                                <script id="editor" type="text/plain" style="width:1024px;height:500px;"></script>
+                            </div>
+                        </li>
+                        <li class="block">
+                            <div class="Submitzone">
+                                <button type="submit">确定</button>
+                                <button class="reset" type="rest">重置</button>
+                            </div>
+                        </li>
+                    </ul>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script src="/js/ueditor-1.4.3.3/ueditor.config.js"></script>
+    <script src="/js/ueditor-1.4.3.3/third-party/zeroclipboard/ZeroClipboard.js"></script>
+    <script src="/js/ueditor-1.4.3.3/ueditor.all.js"></script>
+    <script>
+        window.ue = null;
+        ue = UE.getEditor('editor',{
+            toolbars:[
+                [ 'cleardoc','|','source', '|','undo', 'redo','fullscreen','|', 'customstyle', 'paragraph', 'fontfamily', 'fontsize', '|',
+                  'bold', 'italic', 'underline', 'fontborder', 'strikethrough', 'removeformat', 'autotypeset','pasteplain', '|', 'forecolor', 'backcolor', 'insertorderedlist', 'insertunorderedlist','justifyleft', 'justifycenter', 'justifyright', 'justifyjustify', '|','link', 'unlink', 'simpleupload', 'emotion',
+                ]
+             ],
+            initialFrameWidth :920,
+            initialFrameHeight:320,
+            autoHeightEnabled: true,
+            autoFloatEnabled: true,
+            enableAutoSave:false
+        });
+    </script>
+    <script src="/js/app/schedule/add.js"></script>
+    </body>
+</html>

@@ -1,0 +1,28 @@
+
+<div id="sidebar">
+    <ul>
+        <?php foreach($slider as $val){?>
+        <li <?php if(isset($val['html_option'])) { echo arrtoString($val['html_option']); }?> >
+            <a href="<?=$val['link']?>">
+                <img src="<?=$val['imgsrc']?>" alt="<?=$val['title']?>" />
+                <?=$val['title']?>
+            </a>
+            <?php if(isset($val['isChild']) && $val['isChild']){ ?>
+            <ul>
+                <?php foreach($val['child'] as $v){?>
+                <li <?php if(isset($val['html_option'])) { echo arrtoString($val['html_option']); }?> >
+                    <a href="<?=$v['link']?>"><?=$v['title']?></a>
+                    <?php if(isset($v['isChild']) && $v['isChild']){?>
+                        <ul>
+                            <?php foreach($v['child'] as $vc){?>
+                                <li <?php if(isset($vc['html_option'])) { echo arrtoString($vc['html_option']); }?>><a href="<?=$vc['link']?>"><?=$vc['title']?></a></li>
+                            <?php }?>
+                        </ul>
+                    <?php }?>
+                <?php }?>
+            </ul>
+            <?php }?>
+        </li>
+        <?php }?>
+    </ul>
+</div>

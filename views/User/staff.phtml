@@ -1,0 +1,134 @@
+<?php $this->partial("common/header"); ?>
+    <!--SIDEBAR-->
+     <?php $this->partial("common/slider",$commont_config); ?>
+    <!--CONTENT-->
+    <div id="content" class="white" ms-controller="staff">
+        <h1><img src="/images/icons/users.png" alt="" /> 员工登记</h1>
+
+        <div class="bloc">
+            <form id="saveStaff" action="">
+                <input type="hidden" name="userid" ms-attr-value="{{member.id}}" />
+                <div class="title"></div>
+                <div class="user_save">
+                    <a href="#" class="button save delete">　删除　</a>
+                    <button type="submit" class="button save enter">　保存　</button>
+                    <a href="#" class="button save add">　新增　</a>
+                    <div class="nodelselect">
+                        状态:
+                        <select name="" id="status_select">
+                            <option value="1">启用</option>
+                            <option value="0">禁用</option>
+                        </select>
+                    </div>
+                </div>
+                <p id="stafferror" class="stafferror"></p>
+                <div class="groupzone staffzone">
+                    <div class="groupzoneright staffzone" >
+                        <table>
+                            <tr>
+                                <td>&nbsp;姓名</td>
+                                <td colspan="2">
+                                    <input type="text" name="username" class="staffinput_a"  ms-duplex="member.username" data-validation="required" data-validation-error-msg="用户名不能为空" />
+                                </td>
+                                <td rowspan="2" colspan="2">
+                                    <div class="avater_style">
+                                        <img ms-attr-src="{{member.avater}}" src="/images/no_avatar.jpg"   alt="图片无法显示" ms-data-id="member.attachement_id" ms-data-path="member.avatars"/>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>&nbsp;昵称</td>
+                                <td colspan="2"><input type="text" name="nickname" class="staffinput_a" ms-duplex="member.nickname" data-validation="required" data-validation-error-msg="昵称不能为空"/></td>
+                            </tr>
+                            <tr>
+                                <td>&nbsp;性别</td>
+                                <td colspan="3">
+                                    <select name="sex" ms-duplex="2">
+                                        <option ms-repeat="sex" ms-attr-value="{{$key}}">{{$val}}</option>
+                                    </select>
+
+                                </td>
+                                <td><a href="javascript:;" class="button avaterbutton">上传头像</a></td>
+                            </tr>
+                            <tr>
+                                <td>&nbsp;生日</td>
+                                <td>
+                                    <div class="input">
+                                        <input type="text" name="birth" class="datepicker"  ms-duplex="member.birthday" id="input4" readonly="">
+                                    </div>
+                                </td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>&nbsp;部门</td>
+                                <td colspan="2">
+                                    <div class="staffdepart">
+                                        <input type="text" name="odeptid" class="staffinput_a " ms-duplex="member.deptment" readonly data-validation="required" data-validation-error-msg="部门不能为空"/>
+                                        <img  class="searchico" src="/images/icons/menu/dark/search.png" alt="no"  />
+                                    </div>
+                                </td>
+                                <td>职位&nbsp;&nbsp;</td>
+                                <td>
+                                    <select name="positid" id="">
+                                        <option value="">选择职位</option>
+                                        <option ms-repeat="position" ms-attr-value="{{el.id}}">{{el.name}}</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>&nbsp;办公室电话</td>
+                                <td><input type="text" name="offiec_tel" class="staffinput_b" ms-duplex="member.offiec_tel" /></td>
+                                <td>&nbsp;移动电话</td>
+                                <td colspan="2"><input type="text" name="mobile" class="staffinput_b" ms-duplex="member.mobile" /></td>
+                            </tr>
+                            <tr>
+                                <td>&nbsp;电子邮箱</td>
+                                <td colspan="4"><input type="text" name="email" class="staffinput_c" ms-duplex="member.email" /></td>
+                            </tr>
+                            <tr>
+                                <td>&nbsp;负责业务</td>
+                                <td colspan="4">
+                                    <input type="text" name="duty" class="staffinput_c" ms-duplex="member.duty"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>&nbsp;状态</td>
+                                <td>
+                                    <select name="status" id="">
+                                        <option value="1">启用</option>
+                                        <option value="0">禁用</option>
+                                    </select>
+                                </td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="groupzoneleft staffleft">
+                        <table>
+                            <tr>
+                                <td>&nbsp;名字</td>
+                                <td>部门</td>
+                                <td>状态</td>
+                            </tr>
+                            <tr ms-repeat="allmember" ms-click="click">
+                                <td style="display:none">{{el.id}}</td>
+                                <td>&nbsp;{{el.username}}</td>
+                                <td>{{el.department}}</td>
+                                <td>{{el.status}}</td>
+                            </tr>
+                       </table>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script>
+        window.img_host = "<?=C('app.img_host')?>";
+    </script>
+    <script src="/js/app/user/staff.js"></script>
+    </body>
+</html>

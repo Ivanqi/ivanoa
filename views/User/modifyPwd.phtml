@@ -1,0 +1,27 @@
+<?php $this->partial("common/header"); ?>
+    <!--SIDEBAR-->
+     <?php $this->partial("common/slider",$commont_config); ?>
+    <!--CONTENT-->
+    <div id="content" class="white">
+        <h1><img src="/images/icons/user.png" alt="" /> 修改密码</h1>
+
+        <div class="bloc">
+            <div class="title"></div>
+            <div class="modifyzone">
+                <form id="modifty">
+                    <p>新密码：
+                        <input type="text" class="input" name="pwd_confirmation" data-validation="length" data-validation-length="min6" data-validation-error-msg='密码不能少于6位'/>
+                        <div style="clear:both"></div>
+                    </p>
+                    <p>重复密码：
+                        <input type="text" name="pwd" data-validation="confirmation" class="input" data-validation-error-msg='密码不一致'/>
+                        <div style="clear:both"></div>
+                    </p>
+                    <p><button type="submit" class="button">　保存　</button></p>
+                </form>
+            </div>
+        </div>
+    </div>
+     <script src="/js/app/user/pwd.js"></script>
+    </body>
+</html>

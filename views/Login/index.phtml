@@ -1,0 +1,48 @@
+<html>
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+
+    <head>
+
+        <meta charset="utf-8">
+        <title><?=$title?></title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="">
+        <meta name="author" content="">
+
+        <!-- CSS -->
+        <link rel="stylesheet" href="/css/reset.css">
+        <link rel="stylesheet" href="/css/supersized.css">
+        <link rel="stylesheet" href="/css/stylelogin.css">
+        <link rel="stylesheet" href="/css/formValidator/theme-default.min.css">
+
+        <script src="/js/require.js"></script>
+        <script src="/js/config.js"></script>
+        <script>
+            window.main_host = "<?=C('app.main_host')?>";
+        </script>
+    </head>
+
+    <body>
+
+        <div class="page-container">
+            <h1>IvanOA 登录</h1>
+            <form id="login_form" action="/login/login" method="post">
+                <input type="hidden" name="redirect_url" value="<?=$redirect_url?>" id="login_redirect_url" />
+                <p id="error_msg"></p>
+                <p><input type="text" id="username" name="username" class="username" placeholder="请输入您的用户名！" data-validation="custom" data-validation-regexp='^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$|^(13[0-9]|15[012356789]|17[678]|18[0-9]|14[57])[0-9]{8}$|^[a-zA-Z\u4E00-\u9FA5][a-zA-Z\u4E00-\u9FA50-9_]{0,15}$'  data-validation-error-msg='请输入正确的用户名或手机邮箱格式'></p>
+                <p><input type="password" id="password" name="password" class="password" placeholder="请输入您的用户密码！" data-validation="length" data-validation-length="6-12" data-validation-error-msg="请输入6-12位的密码"></p>
+                <p class="captach_hidden">
+                    <img src="http://www.ivanoa.com/login/captcha" class="Captcha_img" alt="看不清？请重新点击" title="看不清？请重新点击"/>
+                    <input id="captcha" type="text" class="Captcha" name="Captcha" placeholder="请输入验证码！"  data-validation="server" data-validation-url="/login/checkCode/">
+                    <div style="clear:both"></div>
+                </p>
+                <button type="submit" class="submit_button" >登录</button>
+            </form>
+        </div>
+
+        <!-- Javascript -->
+        <script src="/js/app/login/login.js"></script>
+    </body>
+</html>
+

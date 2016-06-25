@@ -1,0 +1,79 @@
+<?php $this->partial("common/header"); ?>
+    <!--SIDEBAR-->
+     <?php $this->partial("common/slider",$commont_config); ?>
+    <!--CONTENT-->
+    <div id="content" class="user_info">
+        <h1><img src="/images/icons/user.png" alt="" /> 用户资料</h1>
+
+        <div class="bloc">
+            <div class="title">基础信息</div>
+            <div class="user_save">
+                <a href="#" class="button save">　保存　</a>
+            </div>
+            <div class="content">
+                <form id="usersave">
+                    <table class="user_table">
+                        <input type="hidden" name="id" value="<?=$id?>" />
+                        <tr>
+                            <td>&nbsp;姓名</td>
+                            <td><?=$username?></td>
+                            <td colspan="2" rowspan="2" align="center" valign="middle">
+                                <div class="avater_style">
+                                    <img src="<?=$avater?>" data-id="<?=$attachement_id?>" data-path="<?=$avatars?>" alt="头像"/>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>性别</td>
+                            <td>
+                                <select name="sex" id="">
+                                    <option value="1" <?php if($sex == 1):?> selected <?php endif;?>>男</option>
+                                    <option value="2" <?php if($sex == 2):?> selected <?php endif;?>>女</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>&nbsp;生日</td>
+                            <td>
+                                <div class="input">
+                                    <input type="text" name="birth" class="datepicker"  id="input4"  value="<?=$birthday?>" readonly />
+                                </div>
+                            </td>
+                            <td></td>
+                            <td>
+                                <div class="avaterzone">
+                                    <a href="javascript:;" id="avaterupload" class="button">上传头像</a>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>&nbsp;部门</td>
+                            <td><?=$deptment?></td>
+                            <td>职位</td>
+                            <td><?=$position?></td>
+                        </tr>
+                        <tr>
+                            <td>&nbsp;办公室电话</td>
+                            <td><input type="text" name="offiec_tel" value="<?=$offiec_tel?>" class="userInput"></td>
+                            <td>移动电话</td>
+                            <td><input type="text" name="mobile" value="<?=$mobile?>" class="userInput"></td>
+                        </tr>
+                        <tr>
+                            <td>&nbsp;电子邮箱</td>
+                            <td><input type="text" name="email" value="<?=$email?>" class="userInput"></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>负责业务</td>
+                            <td colspan="3"><input type="text" name="duty" value="<?=$duty?>" class="userInput userInput2"></td>
+                        </tr>
+                    </table>
+                </form>
+                <div class="cb"></div>
+            </div>
+        </div>
+    </div>
+    <script src="/js/app/user/user.js"></script>
+    </body>
+</html>

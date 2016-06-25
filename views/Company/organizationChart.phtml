@@ -1,0 +1,49 @@
+<?php $this->partial("common/header"); ?>
+    <!--SIDEBAR-->
+     <?php $this->partial("common/slider",$commont_config); ?>
+    <!--CONTENT-->
+    <div id="content" class="white" ms-controller="organizationChart">
+        <h1><img src="/images/icons/users.png" alt="" /> 部门管理</h1>
+
+        <div class="bloc">
+            <form id="organizationChartform" method="post">
+                <input type="hidden" name="id" ms-attr-value="{{oneDept.id}}" />
+                <div class="title"></div>
+                <div class="user_save">
+                    <a href="javascript:;" class="button save delete">　删除　</a>
+                    <button type="submit" class="button save enter">　保存　</button>
+                    <a href="javascript:;" class="button save add">　新增　</a>
+                </div>
+                <div class="groupzone addnodezone">
+                    <div class="groupzoneright">
+                        <p><span>名称:</span><input type="text" ms-duplex="oneDept.name" data-validation="required" data-validation-error-msg="名称不能为空"></p>
+                        <p>
+                            <span>上级部门:</span><input type="text" readonly name="odeptid" ms-duplex="oneDept.deptPname" data-validation="required" data-validation-error-msg="上级部门不能为空" />
+                            <button type="button" class="groupzonerightbutton button">选择</button>
+                        </p>
+                        <p><span>排序:</span><input type="text" name="sort" ms-duplex="oneDept.sort"></p>
+                        <p><span>状态:</span>
+                            <select name="" id="" name="status" ms-duplex="0">
+                                <option ms-repeat="status" ms-attr-val="{{$key}}" selected>{{$val}}</option>
+                            </select>
+                        </p>
+                        <p>
+                            <span style="width:100%">备注:</span>
+                            <textarea name="remark" ms-attr-value="{{oneDept.remark}}" id="" cols="60" rows="15" ></textarea>
+                        </p>
+                    </div>
+
+                    <div class="groupzoneleft addnodezoneleft">
+                        <ul class="addnodezoneleftul">
+                            <?php foreach($item as $val):?>
+                            <li data-id="<?=$val['id']?>"><span <?=levToStyle($val['lev'],20)?>><i class="fa"></i>&nbsp;<?=$val['name']?></span></li>
+                            <?php endforeach;?>
+                        <ul>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script src="/js/app/company/dept.js"></script>
+    </body>
+</html>

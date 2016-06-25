@@ -1,0 +1,52 @@
+<?php $this->partial("common/header"); ?>
+    <!--SIDEBAR-->
+     <?php $this->partial("common/slider",$commont_config); ?>
+    <!--CONTENT-->
+    <div id="content" class="white" ms-controller="position">
+        <h1><img src="/images/icons/users.png" alt="" /> 职位</h1>
+
+        <div class="bloc">
+            <form id="positionform">
+                <div class="title"></div>
+                <div class="user_save">
+                    <a href="#" class="button save delete">　删除　</a>
+                    <button type="submit" class="button save enter">　保存　</button>
+                    <a href="#" class="button save add">　新增　</a>
+                </div>
+                <div class="groupzone">
+                    <div class="groupzoneright">
+                        <input type="hidden" name="id" ms-duplex="postInfo.id" />
+                        <p><span>名称:</span><input type="text" name="name" ms-duplex="postInfo.name" data-validation="required" data-validation-error-msg="名称不能为空"/></p>
+                        <p><span>排序:</span><input type="text" name="sort" ms-duplex="postInfo.sort"></p>
+                        <p><span>状态:</span>
+                            <select name="statuss" id="">
+                                <option value="0">禁用</option>
+                                <option value="1">启用</option>
+                            </select>
+                        </p>
+                        <p>
+                            <span style="width:100%">备注:</span>
+                            <textarea name="remark" id="" cols="60" rows="15" ms-duplex="postInfo.remark"></textarea>
+                        </p>
+                    </div>
+                    <div class="groupzoneleft">
+                        <table>
+                            <tr>
+                                <td>&nbsp;名称</td>
+                                <td>状态</td>
+                            </tr>
+                            <?php foreach($item  as $val):?>
+                            <tr data-id="<?=$val['id']?>">
+                                <td>&nbsp;<?=$val['name']?></td>
+                                <td><?=$val['status']?></td>
+                            </tr>
+                            <?php endforeach;?>
+                        </table>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script src="/js/app/position/index.js"></script>
+    </body>
+</html>

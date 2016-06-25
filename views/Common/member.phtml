@@ -1,0 +1,24 @@
+<div id="myLayer" class="reveal-modal layermodel member">
+     <div class="headerzone">
+        <h2>&nbsp;<?php echo $commont_config['title']['field_label'] != ''? $commont_config['title']['field_label'] : $item->title ?></h2>
+        <div class="buttonzone">
+            <?php foreach($commont_config['buttonzone'] as $buttonzone):?>
+            <a href="javascript:;" <?php if(isset($buttonzone['html_option'])):?><?=arrtoString($buttonzone['html_option'])?><?php endif;?>><?=$buttonzone['field_label']?></a>
+            <?php endforeach;?>
+        </div>
+         <div style="clear:both"></div>
+    </div>
+    <div style="clear:both"></div>
+    <div class="Mleft">
+        <div class="Mtop"></div>
+    </div>
+    <div class="Mcenter"> <input type="button" value=""></div>
+    <div class="Mright">
+        <!-- <div class="users">
+            <img src="/images/anonymous.png" alt="用户图片"><p>Ivan</p>
+            <div class="del"></div>
+        </div> -->
+    </div>
+    <div style="clear:both"></div>
+    <!--script src="/js/app/common/member.js"></script-->
+</div>
